@@ -9,10 +9,10 @@ public class Main {
     public static void main(String[] args) {
         Juan Hola = new Juan(); //instancio la clase
         Papas Padres = new Papas("Hola Hijo.");
-        int Edad = Padres.getAge();
+        int Edad = Padres.getAge(); //asigno variable al getter para ver valor
         String Pasatiempo = Padres.getHobby();
 
-        System.out.println("Edad: " + Edad);
+        System.out.println("Edad: " + Edad);//imprimo la edad del getter
         System.out.println("Hobby : " + Pasatiempo);
 
 
