@@ -2,8 +2,8 @@ package com.ucreativa.familia;
 
 public class Papas {
 
-    private int Age;
-    private String Hobby;
+    protected int Age;
+    protected String Hobby;
 
     public void setAge(){ //metodo setter, no retorn nada void
         this.Age = this.Age + 1;
