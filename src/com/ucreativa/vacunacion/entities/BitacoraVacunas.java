@@ -2,7 +2,9 @@ package com.ucreativa.vacunacion.entities;
 
 import java.util.Date;
 
-public class BitacoraVacunas {
+public class
+
+BitacoraVacunas {
 
     public BitacoraVacunas(Persona persona, String marca, Date fecha) {
         this.persona = persona;
