@@ -8,16 +8,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
+//Logica de almacenamiento en a db de bitocora
 
 public class InMemoryRepo {
 
     private List<BitacoraVacunas> db; //creo una lista bitacora
 
-    public InMemoryRepo() {
+    public InMemoryRepo() { //creo la lista
         this.db  = new ArrayList<>();
     }
-
+    //metodo de guardar los datos en la lista
     public void save (Persona persona, String marca, Date fecha){
         this.db.add(new BitacoraVacunas(persona, marca, fecha));
     }

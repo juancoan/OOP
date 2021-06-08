@@ -36,7 +36,7 @@ public class Main {
 
 
     Scanner sc = new Scanner(System.in);
-    InMemoryRepo repo = new InMemoryRepo();
+    InMemoryRepo repo = new InMemoryRepo();//llamo a la clase del almacenamiento
     String nombre, cedula, edad, riesgo, isAmigo, relacion, facebook, parentesco, marca;
     Persona persona;
     while (true) {
