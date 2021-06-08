@@ -5,6 +5,7 @@ import com.ucreativa.vacunacion.entities.Amigo;
 import com.ucreativa.vacunacion.entities.BitacoraVacunas;
 import com.ucreativa.vacunacion.entities.Familiar;
 import com.ucreativa.vacunacion.entities.Persona;
+import com.ucreativa.vacunacion.repositories.InMemoryRepo;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -35,10 +36,11 @@ public class Main {
 
 
     Scanner sc = new Scanner(System.in);
-    List<BitacoraVacunas> db = new ArrayList<>(); //creo una lista bitacora
+    InMemoryRepo repo = new InMemoryRepo();
+    String nombre, cedula, edad, riesgo, isAmigo, relacion, facebook, parentesco, marca;
+    Persona persona;
     while (true) {
-            String nombre, cedula, edad, riesgo, isAmigo, relacion, facebook, parentesco, marca;
-            Persona persona;
+
             //pido datos
             System.out.println("Digite nombre: ");
             nombre = sc.nextLine(); //siguiente linea
@@ -73,14 +75,14 @@ public class Main {
             System.out.println("Digite marca:");
             marca = sc.nextLine();
 
-            db.add(new BitacoraVacunas(persona, marca, new Date()));
+            repo.save(persona, marca, new Date());
 
             System.out.println("Quiere imprimir lista(S)");
             String print = sc.nextLine(); //siguiente linea
             if (print.equals("S")) {
-                for (BitacoraVacunas item : db)//recorro
+                for (String item : repo.get())//recorro
                 {
-                    System.out.println(item.getPersona().getNombre() + " vacunado el " + item.getFecha());
+                    System.out.println(item);
                 }
             }
         }
