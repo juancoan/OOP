@@ -6,6 +6,7 @@ import com.ucreativa.vacunacion.entities.BitacoraVacunas;
 import com.ucreativa.vacunacion.entities.Familiar;
 import com.ucreativa.vacunacion.entities.Persona;
 import com.ucreativa.vacunacion.repositories.InMemoryRepo;
+import com.ucreativa.vacunacion.repositories.Repository;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -36,7 +37,7 @@ public class Main {
 
 
     Scanner sc = new Scanner(System.in);
-    InMemoryRepo repo = new InMemoryRepo();//llamo a la clase del almacenamiento
+    Repository repo = new InMemoryRepo();//llamo a la clase del almacenamiento
     String nombre, cedula, edad, riesgo, isAmigo, relacion, facebook, parentesco, marca;
     Persona persona;
     while (true) {

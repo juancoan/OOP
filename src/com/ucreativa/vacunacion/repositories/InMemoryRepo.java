@@ -7,10 +7,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ThreadPoolExecutor;
 
 //Logica de almacenamiento en a db de bitocora
 
-public class InMemoryRepo {
+public class InMemoryRepo implements Repository {
 
     private List<BitacoraVacunas> db; //creo una lista bitacora
 
