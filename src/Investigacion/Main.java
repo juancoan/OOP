@@ -7,7 +7,7 @@ public class Main {
         SoyUnico juan = SoyUnico.getSingletonInstance("Juan Cordoba");
         SoyUnico juansito = SoyUnico.getSingletonInstance("Alguien Mas");
 
-        //ricardo y ramon son referencias a un único objeto de la clase SoyUnico
+        //juan y juansito son referencias a un único objeto de la clase SoyUnico
         System.out.println(juan.getNombre());
         System.out.println(juansito.getNombre());
 
