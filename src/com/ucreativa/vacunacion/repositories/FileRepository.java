@@ -34,7 +34,7 @@ public class FileRepository implements Repository {
     public List<String> get() {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH));
-            reader.lines().collect(Collectors.toList());//leo lo del archivo y lo salvo a una lista
+            return reader.lines().collect(Collectors.toList());//leo lo del archivo y lo salvo a una lista
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

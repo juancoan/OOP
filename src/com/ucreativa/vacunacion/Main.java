@@ -80,9 +80,7 @@ public class Main {
             print = sc.nextLine(); //siguiente linea
             if (print.equals("S")) {
                 for (String item : servicio.get())//recorro
-                {
                     System.out.println(item);
-                }
             }
         }
     }
