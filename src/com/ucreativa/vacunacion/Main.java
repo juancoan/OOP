@@ -8,6 +8,7 @@ import com.ucreativa.vacunacion.entities.Persona;
 import com.ucreativa.vacunacion.repositories.FileRepository;
 import com.ucreativa.vacunacion.repositories.InMemoryRepo;
 import com.ucreativa.vacunacion.repositories.Repository;
+import com.ucreativa.vacunacion.services.BitacoraServicio;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -38,10 +39,9 @@ public class Main {
 
 
     Scanner sc = new Scanner(System.in);
-    Repository repo = new FileRepository();//llamo a la clase del almacenamiento en un archivo
+    BitacoraServicio servicio = new BitacoraServicio(new FileRepository());//llamo a la clase del almacenamiento en un archivo
     //Repository repo = new InMemoryRepo();//llamo a la clase del almacenamiento en memoria
-    String nombre, cedula, edad, riesgo, isAmigo, relacion, facebook, parentesco, marca;
-    Persona persona;
+    String nombre, cedula, edad, riesgo, isAmigo, relacion = "", facebook = "", parentesco, marca;
     while (true) {
 
             //pido datos
@@ -66,24 +66,22 @@ public class Main {
 
                 System.out.println("Digite facebook id: ");
                 facebook = sc.nextLine(); //siguiente linea
-                persona = new Amigo(nombre, cedula, Integer.parseInt(edad), riesgo.equals("S"), relacion, facebook); //creo el amigo
                 //edad lo convierto y el riesgo lo convierto a booleano, poniendolo como condicion
 
             } else {
 
                 System.out.println("Digite parentesco: ");
                 parentesco = sc.nextLine(); //siguiente linea
-                persona = new Familiar(nombre, cedula, Integer.parseInt(edad), riesgo.equals("S"), parentesco); //creo el familiar
             }
             System.out.println("Digite marca:");
             marca = sc.nextLine();
 
-            repo.save(persona, marca, new Date());
+            servicio.save(nombre, cedula, Integer.parseInt(edad), riesgo.equals("S"), relacion, facebook);
 
             System.out.println("Quiere imprimir lista(S)");
             String print = sc.nextLine(); //siguiente linea
             if (print.equals("S")) {
-                for (String item : repo.get())//recorro
+                for (String item : servicio.get())//recorro
                 {
                     System.out.println(item);
                 }

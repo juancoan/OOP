@@ -2,39 +2,43 @@ package com.ucreativa.vacunacion.repositories;
 
 import com.ucreativa.vacunacion.entities.Persona;
 
+import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 //importo librerias para manejo de archivos
-import java.io.FileWriter;
-import java.io.IOException;
 
 
 //implemento la clase repository que es una interface.
 //Utilizo los metodos genericos que se crearon en repository
 
 public class FileRepository implements Repository {
-    private List<String> ArrayList;
+    private final String FILE_PATH = "db.txt";
 
     @Override
     public void save(Persona persona, String marca, Date fecha) {
-
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyy hh:mm:ss");
+        String text = persona.getNombre()+ " " + marca + " " + format.format(fecha) + "\n"; // se pone lo mismo que guardo en InMemory
         try {
-            FileWriter myWriter = new FileWriter("C:/Users/DELL/Desktop/Bitacora.txt");
-            myWriter.write(String.valueOf(persona));
-            myWriter.write(marca);
-            myWriter.write(String.valueOf(fecha));
-            myWriter.close();
-            System.out.println("Creo el archivo correctamente.");
+            BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH,true));
+            writer.append(text);
+            writer.close();
         } catch (IOException e) {
-            System.out.println("Ha ocurrido un error al crear archivo.");
             e.printStackTrace();
         }
     }
 
-    @Override
+    @Override //muesta la lista salvada
     public List<String> get() {
-        return new ArrayList<>();
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH));
+            reader.lines().collect(Collectors.toList());//leo lo del archivo y lo salvo a una lista
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 
