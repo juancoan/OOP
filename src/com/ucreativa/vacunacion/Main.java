@@ -6,8 +6,6 @@ import com.ucreativa.vacunacion.entities.BitacoraVacunas;
 import com.ucreativa.vacunacion.entities.Familiar;
 import com.ucreativa.vacunacion.entities.Persona;
 import com.ucreativa.vacunacion.repositories.FileRepository;
-import com.ucreativa.vacunacion.repositories.InMemoryRepo;
-import com.ucreativa.vacunacion.repositories.Repository;
 import com.ucreativa.vacunacion.services.BitacoraServicio;
 
 import java.util.ArrayList;
@@ -41,7 +39,7 @@ public class Main {
     Scanner sc = new Scanner(System.in);
     BitacoraServicio servicio = new BitacoraServicio(new FileRepository());//llamo a la clase del almacenamiento en un archivo
     //Repository repo = new InMemoryRepo();//llamo a la clase del almacenamiento en memoria
-    String nombre, cedula, edad, riesgo, isAmigo, relacion = "", facebook = "", parentesco, marca;
+    String nombre, cedula, edad, riesgo, isAmigo, relacion = "", facebook = "", parentesco = "", marca, print;
     while (true) {
 
             //pido datos
@@ -76,10 +74,10 @@ public class Main {
             System.out.println("Digite marca:");
             marca = sc.nextLine();
 
-            servicio.save(nombre, cedula, Integer.parseInt(edad), riesgo.equals("S"), relacion, facebook);
+            servicio.save(nombre, cedula,edad,riesgo,isAmigo,relacion,facebook,parentesco, marca);
 
             System.out.println("Quiere imprimir lista(S)");
-            String print = sc.nextLine(); //siguiente linea
+            print = sc.nextLine(); //siguiente linea
             if (print.equals("S")) {
                 for (String item : servicio.get())//recorro
                 {

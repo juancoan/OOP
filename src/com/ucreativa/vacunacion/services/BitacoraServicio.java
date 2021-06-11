@@ -12,13 +12,13 @@ public class BitacoraServicio {
 
     private Repository repository;
 
-    public BitacoraServicio(Repository repository){
+    public BitacoraServicio(Repository repository) {
         this.repository = repository;
     }
 
     public void save(String nombre, String cedula, String txtedad,
                      String txtriesgo, String txtisAmigo, String relacion,
-                     String facebook, String parentesco, String marca ) {
+                     String facebook, String parentesco, String marca) {
 
         int edad = Integer.parseInt(txtedad);
         boolean isAmigo = txtisAmigo.equals("A");
@@ -33,14 +33,9 @@ public class BitacoraServicio {
         this.repository.save(persona, marca, new Date());
     }
 
-    public List<String> get(){
+    public List<String> get() {
         return this.repository.get();
-}
-
-    public void save(String nombre, String cedula, int parseInt, boolean s, String relacion, String facebook) {
     }
 
 
-//    public void save(String nombre, String cedula, int parseInt, boolean s, String relacion, String facebook) {
-//    }
 }
