@@ -24,8 +24,8 @@ public class FrontEnd extends JFrame {
 
     public void construccionPantalla(){
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //cuando le doy la X, se cierra
-        super.setSize(400,200); //tamaño
-        super.setLayout(new GridLayout(5,2)); //distribucion
+        super.setSize(600,800); //tamaño
+        super.setLayout(new GridLayout(10,2)); //distribucion
     }
 
     private void agregarComponente(Component componente){
