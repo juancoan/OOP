@@ -1,6 +1,7 @@
 //Juan Antonio Cordoba
 package com.ucreativa.vacunacion;
 
+import com.ucreativa.vacunacion.UI.FrontEnd;
 import com.ucreativa.vacunacion.entities.Amigo;
 import com.ucreativa.vacunacion.entities.BitacoraVacunas;
 import com.ucreativa.vacunacion.entities.Familiar;
@@ -34,54 +35,56 @@ public class Main {
         bitacora.add(new BitacoraVacunas(marchi, "J&J", new Date())); //agrego instancia de BitacoraVacunas dentro de la lista
 
         //leyendo de la consola.
+    FrontEnd fe = new FrontEnd("Sistema de Vacunacion");
+    fe.build();
 
-
-    Scanner sc = new Scanner(System.in);
-    BitacoraServicio servicio = new BitacoraServicio(new FileRepository());//llamo a la clase del almacenamiento en un archivo
-    //Repository repo = new InMemoryRepo();//llamo a la clase del almacenamiento en memoria
-    String nombre, cedula, edad, riesgo, isAmigo, relacion = "", facebook = "", parentesco = "", marca, print;
-    while (true) {
-
-            //pido datos
-            System.out.println("Digite nombre: ");
-            nombre = sc.nextLine(); //siguiente linea
-
-            System.out.println("Digite cedula: ");
-            cedula = sc.nextLine(); //siguiente linea
-
-            System.out.println("Digite edad: ");
-            edad = sc.nextLine(); //siguiente linea
-
-            System.out.println("Digite riesgo (S/N): ");
-            riesgo = sc.nextLine(); //siguiente linea
-
-            System.out.println("Amigo(A)/Familiar(F)");
-            isAmigo = sc.nextLine();
-            if (isAmigo.equals("A")) { //verifica si es amigo o no
-
-                System.out.println("Digite relacion: ");
-                relacion = sc.nextLine(); //siguiente linea
-
-                System.out.println("Digite facebook id: ");
-                facebook = sc.nextLine(); //siguiente linea
-                //edad lo convierto y el riesgo lo convierto a booleano, poniendolo como condicion
-
-            } else {
-
-                System.out.println("Digite parentesco: ");
-                parentesco = sc.nextLine(); //siguiente linea
-            }
-            System.out.println("Digite marca:");
-            marca = sc.nextLine();
-
-            servicio.save(nombre, cedula,edad,riesgo,isAmigo,relacion,facebook,parentesco, marca);
-
-            System.out.println("Quiere imprimir lista(S)");
-            print = sc.nextLine(); //siguiente linea
-            if (print.equals("S")) {
-                for (String item : servicio.get())//recorro
-                    System.out.println(item);
-            }
-        }
+// NO NECESITO ESTO PORQUE LO PASE AL FRONTEND.JAVA
+//    Scanner sc = new Scanner(System.in);
+//    BitacoraServicio servicio = new BitacoraServicio(new FileRepository());//llamo a la clase del almacenamiento en un archivo
+//    //Repository repo = new InMemoryRepo();//llamo a la clase del almacenamiento en memoria
+//    String nombre, cedula, edad, riesgo, isAmigo, relacion = "", facebook = "", parentesco = "", marca, print;
+//    while (true) {
+//
+//            //pido datos
+//            System.out.println("Digite nombre: ");
+//            nombre = sc.nextLine(); //siguiente linea
+//
+//            System.out.println("Digite cedula: ");
+//            cedula = sc.nextLine(); //siguiente linea
+//
+//            System.out.println("Digite edad: ");
+//            edad = sc.nextLine(); //siguiente linea
+//
+//            System.out.println("Digite riesgo (S/N): ");
+//            riesgo = sc.nextLine(); //siguiente linea
+//
+//            System.out.println("Amigo(A)/Familiar(F)");
+//            isAmigo = sc.nextLine();
+//            if (isAmigo.equals("A")) { //verifica si es amigo o no
+//
+//                System.out.println("Digite relacion: ");
+//                relacion = sc.nextLine(); //siguiente linea
+//
+//                System.out.println("Digite facebook id: ");
+//                facebook = sc.nextLine(); //siguiente linea
+//                //edad lo convierto y el riesgo lo convierto a booleano, poniendolo como condicion
+//
+//            } else {
+//
+//                System.out.println("Digite parentesco: ");
+//                parentesco = sc.nextLine(); //siguiente linea
+//            }
+//            System.out.println("Digite marca:");
+//            marca = sc.nextLine();
+//
+//            servicio.save(nombre, cedula,edad,riesgo,isAmigo,relacion,facebook,parentesco, marca);
+//
+//            System.out.println("Quiere imprimir lista(S)");
+//            print = sc.nextLine(); //siguiente linea
+//            if (print.equals("S")) {
+//                for (String item : servicio.get())//recorro
+//                    System.out.println(item);
+//            }
+//        }
     }
 }

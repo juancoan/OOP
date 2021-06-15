@@ -17,12 +17,10 @@ public class BitacoraServicio {
     }
 
     public void save(String nombre, String cedula, String txtedad,
-                     String txtriesgo, String txtisAmigo, String relacion,
+                     boolean riesgo, boolean isAmigo, String relacion,
                      String facebook, String parentesco, String marca) {
 
         int edad = Integer.parseInt(txtedad);
-        boolean isAmigo = txtisAmigo.equals("A");
-        boolean riesgo = txtriesgo.equals("S");
         Persona persona;
 
         if (isAmigo) {
