@@ -2,20 +2,25 @@
 package Proyecto;
 
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
-import java.util.Random;
+import Proyecto.Entidades.Paciente;
+import Proyecto.Repo.Agenda;
+import Proyecto.Repo.RepoLocal;
+
+import javax.swing.*;
 
 public class Main {
-
-    private static Random random = null;
-
-    public static String getDateRand() {
-        Calendar c = Calendar.getInstance(Locale.CHINA);
-        Date d = c.getTime();//from w w  w .j a v a 2  s .c  o  m
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-        return sdf.format(d) + (int) (Math.random() * 10);
+    public static void main(String[] args) {
+        String continuar = "Si";
+        while (continuar.equals("Si")){
+            Paciente patient = new Paciente();
+            patient.setEbais();
+            Agenda myAgenda = new Agenda();
+            myAgenda.MostrarFecha();
+            RepoLocal archivo = new RepoLocal();
+            archivo.save(patient);
+        continuar = JOptionPane.showInputDialog("Desea agregar/revisar otro dato: Si/No");
     }
+   }
+
 }
+
