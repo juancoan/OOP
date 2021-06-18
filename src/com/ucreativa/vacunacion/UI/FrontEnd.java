@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
+
 public class FrontEnd extends JFrame {
 
 
@@ -26,7 +27,7 @@ public class FrontEnd extends JFrame {
 
     public void construccionPantalla(){
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //cuando le doy la X, se cierra
-        super.setSize(600,800); //tamaño
+        super.setSize(400,400); //tamaño
         super.setLayout(new GridLayout(10,2)); //distribucion
     }
 
@@ -36,7 +37,6 @@ public class FrontEnd extends JFrame {
 
 
     private void crearComponentes(){
-        String icono = "error.png";
         //crear labels
         JLabel lblNombre = new JLabel("Nombre");
         JLabel lblcedula = new JLabel("Cedula");
@@ -78,6 +78,7 @@ public class FrontEnd extends JFrame {
         salvar.addActionListener(new AbstractAction() {
         @Override
         public void actionPerformed(ActionEvent e) {
+
             BitacoraServicio servicio = new BitacoraServicio(new FileRepository());
             try {
                 servicio.save(txtNombre.getText(), txtcedula.getText(), //fuerza a atrapar la excepcion abajo
@@ -105,7 +106,7 @@ public class FrontEnd extends JFrame {
 
             } catch (ErrorEnEdadException error) {
                 JOptionPane.showMessageDialog(((JButton)e.getSource()).getParent(),
-                error.getMessage());
+                        error.getMessage());
             }
 
 
