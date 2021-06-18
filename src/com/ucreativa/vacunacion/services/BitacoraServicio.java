@@ -18,9 +18,14 @@ public class BitacoraServicio {
 
     public void save(String nombre, String cedula, String txtedad,
                      boolean riesgo, boolean isAmigo, String relacion,
-                     String facebook, String parentesco, String marca) {
+                     String facebook, String parentesco, String marca) throws ErrorEnEdadException {
 
-        int edad = Integer.parseInt(txtedad);
+        int edad;
+        try{
+            edad = Integer.parseInt(txtedad);
+        }catch (NumberFormatException x) {
+            throw new ErrorEnEdadException(txtedad);
+        }
         Persona persona;
 
         if (isAmigo) {

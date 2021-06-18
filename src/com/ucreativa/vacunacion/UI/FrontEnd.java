@@ -2,12 +2,14 @@ package com.ucreativa.vacunacion.UI;
 
 import com.ucreativa.vacunacion.repositories.FileRepository;
 import com.ucreativa.vacunacion.services.BitacoraServicio;
+import com.ucreativa.vacunacion.services.ErrorEnEdadException;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class FrontEnd extends JFrame {
+
 
     public FrontEnd(String titulo){
         super(titulo); //llamo al papa, osea JFrame
@@ -34,7 +36,7 @@ public class FrontEnd extends JFrame {
 
 
     private void crearComponentes(){
-
+        String icono = "error.png";
         //crear labels
         JLabel lblNombre = new JLabel("Nombre");
         JLabel lblcedula = new JLabel("Cedula");
@@ -77,28 +79,36 @@ public class FrontEnd extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             BitacoraServicio servicio = new BitacoraServicio(new FileRepository());
-            servicio.save(txtNombre.getText(), txtcedula.getText(),
-                    txttxtedad.getText(),
-                    txttxtriesgo.isSelected(),
-                    txttxtisAmigo.isSelected(),
-                    txtrelacion.getText(),
-                    txtfacebook.getText(),
-                    txtparentesco.getText(),
-                    txtmarca.getText());
+            try {
+                servicio.save(txtNombre.getText(), txtcedula.getText(), //fuerza a atrapar la excepcion abajo
+                        txttxtedad.getText(),
+                        txttxtriesgo.isSelected(),
+                        txttxtisAmigo.isSelected(),
+                        txtrelacion.getText(),
+                        txtfacebook.getText(),
+                        txtparentesco.getText(),
+                        txtmarca.getText());
+                txtNombre.setText("");
+                txtcedula.setText("");
+                txttxtedad.setText("");
+                txttxtriesgo.isSelected();
+                txttxtisAmigo.isSelected();
+                txtrelacion.setText("");
+                txtfacebook.setText("");
+                txtparentesco.setText("");
+                txtmarca.setText("");
 
-                    txtNombre.setText("");
-                    txtcedula.setText("");
-                    txttxtedad.setText("");
-                    txttxtriesgo.isSelected();
-                    txttxtisAmigo.isSelected();
-                    txtrelacion.setText("");
-                    txtfacebook.setText("");
-                    txtparentesco.setText("");
-                    txtmarca.setText("");
+                //lo imprimo en una ventana el reporte.
+                String reporte = String.join("\n", servicio.get());
+                JOptionPane.showMessageDialog(((JButton)e.getSource()).getParent(), reporte);
 
-            //lo imprimo en una ventana el reporte.
-            String reporte = String.join("\n", servicio.get());
-            JOptionPane.showMessageDialog(((JButton)e.getSource()).getParent(), reporte);
+
+            } catch (ErrorEnEdadException error) {
+                JOptionPane.showMessageDialog(((JButton)e.getSource()).getParent(),
+                error.getMessage());
+            }
+
+
 
         }
     });
