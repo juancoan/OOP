@@ -10,10 +10,12 @@ import java.util.List;
 
 public class BitacoraServicio {
 
+    private ContadorRiesgo contador;
     private Repository repository;
 
     public BitacoraServicio(Repository repository) {
         this.repository = repository;
+        this.contador = ContadorRiesgo.getInstance(); // llamo a la instancia que secreo o si es nula (Patron singleton)
     }
 
     public void save(String nombre, String cedula, String txtedad,
@@ -26,6 +28,10 @@ public class BitacoraServicio {
         }catch (NumberFormatException x) {
             throw new ErrorEnEdadException(txtedad);
         }
+        if (riesgo){
+            this.contador.SumarRiesgo();
+        }
+
         Persona persona;
 
         if (isAmigo) {
@@ -37,6 +43,7 @@ public class BitacoraServicio {
     }
 
     public List<String> get() {
+        System.out.println("La cantidad de personas con riesgo es: " + this.contador.getCantidadRiesgo());
         return this.repository.get();
     }
 
